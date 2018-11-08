@@ -57,8 +57,16 @@ VALUES(DEFAULT, 2016, 1, '2016-05-28', '2018-06-15');
 INSERT INTO Term
 VALUES(DEFAULT, 2016, 0, '2016-01-20', '2016-05-22');
 
+--Should fail, violates foreign key restraint
+INSERT INTO Term
+VALUES(DEFAULT, 2018, 4, '2018-01-23', '2018-05-24');
+
+--Should fail, violates Uniqueness constraint
+INSERT INTO Term
+VALUES(DEFAULT, 2017, 0, '2018-01-15', '2018-05-12');
+
 --Instructor table
-INSERT INTO Instructor
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
 VALUES(
      DEFAULT,
      'Sean',
@@ -67,7 +75,7 @@ VALUES(
      'SeanMurthy@WCSU.edu'
 );
 
-INSERT INTO Instructor
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
 VALUES(
      DEFAULT,
      'Gancho',
@@ -76,7 +84,7 @@ VALUES(
      'GanchoGanchev@WCSU.edu'
 );
 
-INSERT INTO Instructor
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
 VALUES(
      DEFAULT,
      'Dan',
@@ -85,7 +93,7 @@ VALUES(
      'DanCoffman@WCSU.edu'
 );
 
-INSERT INTO Instructor
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
 VALUES(
      DEFAULT,
      'Todor',
@@ -94,13 +102,33 @@ VALUES(
      'TodorIvanov@WCSU.edu'
 );
 
-INSERT INTO Instructor
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
 VALUES(
      DEFAULT,
      'William',
      'Joel',
      'Computer Science',
      'WilliamJoel@WCSU.edu'
+);
+
+--Should fail, violates uniqueness constraint
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
+VALUES(
+     DEFAULT,
+     'William',
+     'Joel',
+     'Computer Science',
+     'WilliamJoel@WCSU.edu'
+);
+
+--Should fail, violates email check
+INSERT INTO Instructor (ID, fName, lName, Department, Email)
+VALUES(
+     DEFAULT,
+     'Rona',
+     'Gurkewitz',
+     'Computer Science',
+     'RonaGurkewitz#WCSU.edu'
 );
 
 --Section table
@@ -175,6 +203,50 @@ VALUES(
      3
 );
 
+--Should fail, violates uniqueness constraint
+INSERT INTO Section
+VALUES(
+     DEFAULT,
+     2,
+     'CS170',
+     '01',
+     '00010',
+     'WS116',
+     '2017-09-05',
+     '2017-01-16',
+     '2017-10-16',
+     2
+);
+
+--Should fail, violates term FK
+INSERT INTO Section
+VALUES(
+     DEFAULT,
+     10,
+     'CS170',
+     '01',
+     '00010',
+     'WS116',
+     '2017-09-05',
+     '2017-01-16',
+     '2017-10-16',
+     2
+);
+
+--Should fail, violates Course FK
+INSERT INTO Section
+VALUES(
+     DEFAULT,
+     1,
+     'MAT100',
+     '01',
+     '00111',
+     'WS103',
+     '2017-01-15',
+     '2017-05-15',
+     '2017-03-15',
+     3
+);
 
 --Section_Meeting
 INSERT INTO Section_Meeting
@@ -267,6 +339,26 @@ VALUES(
      '13:30:00.00'
 );
 
+--Should fail, violates uniqueness constraint
+INSERT INTO Section_Meeting
+VALUES(
+     DEFAULT,
+     1,
+     'M',
+     '10:30:00.00',
+     '12:00:00.00'
+);
+
+--Should fail, violates Section FK
+INSERT INTO Section_Meeting
+VALUES(
+     DEFAULT,
+     20,
+     'M',
+     '10:30:00.00',
+     '12:00:00.00'
+);
+
 --Student
 INSERT INTO Student
 VALUES(
@@ -328,6 +420,32 @@ VALUES(
      'Senior'
 );
 
+--Should fail, violates Uniqueness constraint
+INSERT INTO Student
+VALUES(
+     DEFAULT,
+     'Brian',
+     'Michael',
+     'Bacon',
+     '0001',
+     'bbacon56@gmail.com',
+     'Computer Science',
+     'Senior'
+);
+
+--Should fail, violates email check
+INSERT INTO Student
+VALUES(
+     DEFAULT,
+     'Timmy',
+     'T',
+     'Turner',
+     '0005',
+     'TTurner&gmail.com',
+     'English',
+     'Senior'
+);
+
 --Enrollee
 INSERT INTO Enrollee (Student, Section, DateEnrolled, YearEnrolled, MajorEnrolled)
 VALUES(
@@ -378,6 +496,26 @@ INSERT INTO Enrollee (Student, Section, DateEnrolled, YearEnrolled, MajorEnrolle
 VALUES(
      3,
      1,
+     '2016-11-05',
+     '2016',
+     'Computer Science'
+);
+
+--Should fail, violates student FK
+INSERT INTO Enrollee (Student, Section, DateEnrolled, YearEnrolled, MajorEnrolled)
+VALUES(
+     6,
+     1,
+     '2016-11-05',
+     '2016',
+     'Computer Science'
+);
+
+--Should fail, violates Section FK
+INSERT INTO Enrollee (Student, Section, DateEnrolled, YearEnrolled, MajorEnrolled)
+VALUES(
+     1,
+     20,
      '2016-11-05',
      '2016',
      'Computer Science'
