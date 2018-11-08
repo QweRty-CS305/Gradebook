@@ -88,6 +88,7 @@ CREATE TABLE qwerty.Section
    Instructor1 INT NOT NULL REFERENCES qwerty.Instructor, --primary instructor
    Instructor2 INT REFERENCES qwerty.Instructor, --optional 2nd instructor
    Instructor3 INT REFERENCES qwerty.Instructor, --optional 3rd instructor
+   AttendanceWindow INT NOT NULL CHECK (AttendanceWindow > 0),
    UNIQUE(Term, Course, SectionNumber),
 
    --make sure instructors are distinct
@@ -142,7 +143,6 @@ CREATE TABLE qwerty.Student
    FName VARCHAR(50), --at least one of the name fields must be used: see below
    MName VARCHAR(50), --permit NULL in all 3 fields because some people have only one name: not sure which field will be used
    LName VARCHAR(50), --use a CONSTRAINT on names instead of NOT NULL until we understand the data
-   SchoolIssuedID VARCHAR(50) NOT NULL UNIQUE,
    Email VARCHAR(319) CHECK(TRIM(Email) LIKE '_%@_%._%'),
    Major VARCHAR(50), --non-matriculated students are not required to have a major
    Year VARCHAR(30), --represents the student year. Ex: Freshman, Sophomore, Junior, Senior
@@ -188,6 +188,7 @@ CREATE TABLE qwerty.AttendanceRecord
    Date DATE NOT NULL,
    MeetingID INT NOT NULL REFERENCES qwerty.Section_Meeting,
    Status CHAR(1) NOT NULL REFERENCES qwerty.AttendanceStatus,
+   Reason VARCHAR(50);
    PRIMARY KEY (Student, Section, Date, MeetingID),
    FOREIGN KEY (Student, Section) REFERENCES qwerty.Enrollee
 );
