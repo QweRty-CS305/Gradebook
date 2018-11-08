@@ -1,17 +1,20 @@
---addSectionMgmt.sql - Gradebook
+-- addSectionMgmt.sql
 
---Sean Murthy
---Data Science & Systems Lab (DASSL), Western Connecticut State University (WCSU)
+-- Brian Bacon, Jake Homberg
+-- Team Qwerty
 
---(C) 2017- DASSL. ALL RIGHTS RESERVED.
---Licensed to others under CC 4.0 BY-SA-NC
---https://creativecommons.org/licenses/by-nc-sa/4.0/
+-- This script creates functions relating to section management
+-- The functions return information on sections of courses offered
 
---PROVIDED AS IS. NO WARRANTIES EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+\o spooladdSectionMgmt.txt
 
---This script creates functions related to sections
--- the script should be run as part of application installation
-
+\qecho -n 'Script run on '
+\qecho -n `date /t`
+\qecho -n 'at '
+\qecho -n `time /t`
+\qecho -n ' by '
+\qecho :USER
+\qecho ' '
 
 --Suppress messages below WARNING level for the duration of this script
 SET LOCAL client_min_messages TO WARNING;
@@ -90,8 +93,8 @@ RETURNS TABLE
    SectionNumber VARCHAR(3),
    CRN VARCHAR(5),
    Day VARCHAR(2),
-   TimeStart TIMESTAMP,
-   TimeEnd TIMESTAMP,
+   TimeStart TIME,
+   TimeEnd TIME,
    Location VARCHAR(25),
    StartDate DATE,
    EndDate DATE,
@@ -139,8 +142,8 @@ RETURNS TABLE
      SectionNumber VARCHAR(3),
      CRN VARCHAR(5),
      Day VARCHAR(2),
-     TimeStart TIMESTAMP,
-     TimeEnd TIMESTAMP,
+     TimeStart TIME,
+     TimeEnd TIME,
      Location VARCHAR(25),
      StartDate DATE,
      EndDate DATE,
@@ -161,3 +164,5 @@ $$ LANGUAGE sql
   STABLE
   RETURNS NULL ON NULL INPUT
   ROWS 1;
+
+\o
