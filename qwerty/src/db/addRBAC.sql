@@ -23,7 +23,7 @@ GRANT SELECT ON TABLE qwerty.Course TO student;
 
 --Grant privileges for Season
 REVOKE ALL PRIVILEGES ON TABLE qwerty.Season FROM public;
-GRANT ALL PRIVILEGES ON TABLE qwerty.Seasom TO postgres;
+GRANT ALL PRIVILEGES ON TABLE qwerty.Season TO postgres;
 GRANT ALL PRIVILEGES ON TABLE qwerty.Season TO instructor;
 GRANT SELECT ON TABLE qwerty.Season TO student;
 
@@ -40,7 +40,7 @@ GRANT ALL PRIVILEGES ON TABLE qwerty.Instructor TO instructor;
 GRANT SELECT ON TABLE qwerty.Instructor TO student;
 
 --Grant prvileges for Section
-REVOKE ALL PRIVILEGES ON TABLE qwert.Section FROM public;
+REVOKE ALL PRIVILEGES ON TABLE qwerty.Section FROM public;
 GRANT ALL PRIVILEGES ON TABLE qwerty.Section TO postgres;
 GRANT ALL PRIVILEGES ON TABLE qwerty.Section TO instructor;
 GRANT SELECT ON TABLE qwerty.Section TO student;
