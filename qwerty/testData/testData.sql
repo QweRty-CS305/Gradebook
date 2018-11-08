@@ -144,7 +144,9 @@ VALUES(
      '2017-05-15',
      '2017-03-15',
      1,
-     2
+     2,
+     NULL,
+     15
 );
 
 INSERT INTO qwerty.Section
@@ -158,7 +160,10 @@ VALUES(
      '2017-09-05',
      '2017-01-16',
      '2017-10-16',
-     2
+     2,
+     NULL,
+     NULL,
+     10
 );
 
 INSERT INTO qwerty.Section
@@ -172,7 +177,10 @@ VALUES(
      '2017-09-05',
      '2017-01-16',
      '2017-10-16',
-     1
+     1,
+     NULL,
+     NULL,
+     5
 );
 
 INSERT INTO qwerty.Section
@@ -186,7 +194,10 @@ VALUES(
      '2017-01-15',
      '2017-05-15',
      '2017-03-15',
-     3
+     3,
+     NULL,
+     NULL,
+     20
 );
 
 INSERT INTO qwerty.Section
@@ -200,7 +211,10 @@ VALUES(
      '2017-01-15',
      '2017-05-15',
      '2017-03-15',
-     3
+     3,
+     NULL,
+     NULL,
+     10
 );
 
 --Should fail, violates uniqueness constraint
@@ -215,7 +229,10 @@ VALUES(
      '2017-09-05',
      '2017-01-16',
      '2017-10-16',
-     2
+     2,
+     NULL,
+     NULL,
+     10
 );
 
 --Should fail, violates term FK
@@ -230,7 +247,10 @@ VALUES(
      '2017-09-05',
      '2017-01-16',
      '2017-10-16',
-     2
+     2,
+     NULL,
+     NULL,
+     5
 );
 
 --Should fail, violates Course FK
@@ -245,7 +265,10 @@ VALUES(
      '2017-01-15',
      '2017-05-15',
      '2017-03-15',
-     3
+     3,
+     NULL,
+     NULL,
+     10
 );
 
 --Section_Meeting
@@ -366,7 +389,6 @@ VALUES(
      'Brian',
      'Michael',
      'Bacon',
-     '0001',
      'bbacon56@gmail.com',
      'Computer Science',
      'Senior'
@@ -378,7 +400,6 @@ VALUES(
      'Jake',
      'A',
      'Homberg',
-     '0002',
      'Jhomberg@gmail.com',
      'Computer Science',
      'Junior'
@@ -390,7 +411,6 @@ VALUES(
      'Bobby',
      'B',
      'Bonilla',
-     '0003',
      'BBonilla@gmail.com',
      'Accounting',
      'Freshman'
@@ -402,7 +422,6 @@ VALUES(
      'Chris',
      'C',
      'Smith',
-     '0004',
      'CSmith@gmail.com',
      'Marketing',
      'Sophmore'
@@ -414,7 +433,6 @@ VALUES(
      'Timmy',
      'T',
      'Turner',
-     '0005',
      'TTurner@gmail.com',
      'English',
      'Senior'
@@ -427,7 +445,6 @@ VALUES(
      'Brian',
      'Michael',
      'Bacon',
-     '0001',
      'bbacon56@gmail.com',
      'Computer Science',
      'Senior'
@@ -440,7 +457,6 @@ VALUES(
      'Timmy',
      'T',
      'Turner',
-     '0005',
      'TTurner&gmail.com',
      'English',
      'Senior'
@@ -538,7 +554,8 @@ VALUES(
      1,
      '2017-01-20',
      '1',
-     'A'
+     'A',
+     NULL
 );
 
 INSERT INTO qwerty.AttendanceRecord
@@ -547,7 +564,8 @@ VALUES(
      1,
      '2017-01-25',
      '1',
-     'T'
+     'T',
+     NULL
 );
 
 INSERT INTO qwerty.AttendanceRecord
@@ -556,7 +574,8 @@ VALUES(
      1,
      '2017-01-30',
      1,
-     'P'
+     'P',
+     NULL
 );
 
 --Should violate foreign key, no 2,2 in enrollee
@@ -566,7 +585,8 @@ VALUES(
      2,
      '2017-09-20',
      4,
-     'A'
+     'A',
+     NULL
 );
 
 INSERT INTO qwerty.AttendanceRecord
@@ -575,7 +595,8 @@ VALUES(
      1,
      '2017-12-25',
      3,
-     'T'
+     'T',
+     NULL
 );
 
 --Should violate foreign key, no 5, 10 in enrollee
@@ -585,7 +606,8 @@ VALUES(
      10,
      '2017-03-03',
      3,
-     'T'
+     'T',
+     NULL
 );
 
 \o

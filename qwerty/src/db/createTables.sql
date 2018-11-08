@@ -188,7 +188,7 @@ CREATE TABLE qwerty.AttendanceRecord
    Date DATE NOT NULL,
    MeetingID INT NOT NULL REFERENCES qwerty.Section_Meeting,
    Status CHAR(1) NOT NULL REFERENCES qwerty.AttendanceStatus,
-   Reason VARCHAR(50);
+   Reason VARCHAR(50),
    PRIMARY KEY (Student, Section, Date, MeetingID),
    FOREIGN KEY (Student, Section) REFERENCES qwerty.Enrollee
 );
